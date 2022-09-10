@@ -1,0 +1,32 @@
+<%# <form action="/users" method="post">
+  <label for="user[name]">Name</label>
+  <input type="text" id="name" name="user[name]">
+  <label for="user[email]">Email</label>
+  <input type="email" name="user[email]" id="email">
+  <label for="user[password]">Password</label>
+  <input type="password" name="user[password]" id="password">
+  <input type="submit" value="submit">
+</form> %>
+
+<%= form_with model: @user do |form|%>
+
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= form.label :name, "Name" %>
+<%= form.text_field :name %>
+<%= form.label :email, "Email" %>
+<%= form.email_field :email, placeholder: "example@example.com"%>
+<%= form.label :password, "Password" %>
+<%= form.password_field :password%>
+<%= form.submit "Sign Up" %>
+<% end %>
